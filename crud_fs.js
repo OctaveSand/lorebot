@@ -55,6 +55,6 @@ exports.titleIs = (title) => {
 }
 
 //return an array of records whose roles match the given array of strings
-exports.titleIs = (roles) => {
+exports.rolesInclude = (roles) => {
 }
 
