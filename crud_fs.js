@@ -1,8 +1,8 @@
-'use strict';
-const fs = require('fs');
+'use strict'
+const fs = require('fs')
 const home = './records'
 
-/* sample record: 
+/* sample record:
 
 { title:The og dick-girl,
   uid:5,
@@ -14,47 +14,46 @@ const home = './records'
 
 // create a new record with the given obj
 exports.create = (input) => {
-  var uid = input.uid
-  var output = JSON.stringify(input);
+  const uid = input.uid
+  const output = JSON.stringify(input)
   try {
-    fs.writeFileSync(`${home}/${uid}.json`, output);
-  } catch(err) {
+    fs.writeFileSync(`${home}/${uid}.json`, output)
+  } catch (err) {
     console.error(err)
   }
 }
 
-//return the record by uid
+// return the record by uid
 exports.read = (uid) => {
-  var rawdata = fs.readFileSync(`${home}/${uid}.json`);
-  return JSON.parse(rawdata);
+  const rawdata = fs.readFileSync(`${home}/${uid}.json`)
+  return JSON.parse(rawdata)
 }
 
-//replace (or create) the record identified by uid with the given obj
-exports.update = (uid,input) => {
+// replace (or create) the record identified by uid with the given obj
+exports.update = (uid, input) => {
 }
 
-//delete the record with the given id
+// delete the record with the given id
 exports.del = (uid) => {
   try {
     fs.unlinkSync(`${home}/${uid}.json`)
-  } catch(err) {
+  } catch (err) {
     console.error(err)
   }
 }
 
-//return an array of records whose body contains the given string
+// return an array of records whose body contains the given string
 exports.bodyContains = (string) => {
 }
 
-//return an array of records whose tags contains the given string
+// return an array of records whose tags contains the given string
 exports.tagsContain = (string) => {
 }
 
-//return an array of records whose title matches the given string
+// return an array of records whose title matches the given string
 exports.titleIs = (title) => {
 }
 
-//return an array of records whose roles match the given array of strings
+// return an array of records whose roles match the given array of strings
 exports.rolesInclude = (roles) => {
 }
-
