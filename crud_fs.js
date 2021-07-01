@@ -1,6 +1,7 @@
 'use strict'
 const fs = require('fs')
 const home = './records'
+const fn_regex = /.json$/
 
 /* sample record:
 
@@ -56,4 +57,18 @@ exports.titleIs = (title) => {
 
 // return an array of records whose roles match the given array of strings
 exports.rolesInclude = (roles) => {
+
+}// return an array of all records
+exports.list = () => {
+  var out=[]
+  fs.readdirSync(`${home}`).forEach(file => {
+    if (fn_regex.test(file)) { 
+      var uid = file.replace(".json", "")
+      var article = exports.read(uid)
+      out.push(article)
+    }
+  });
+  return out
 }
+
+
