@@ -1,5 +1,6 @@
 'use strict'
-const db = require('./crud_fs.js');
+const db = require('../storage/filesystem.js');
+const conf = require('../../config.json');
 
 // list all articles
 exports.list = (message) => {
@@ -13,7 +14,7 @@ exports.list = (message) => {
   message.channel.send(`What number would you like to read? 0 - ${articles.length -1} (\`C\` for cancel)`).then(() => {
     message.channel.awaitMessages(filter, {
         max: 1,
-        time: 30000,
+        time: conf.timeout,
         errors: ['time']
     })
     .then(message => {
@@ -28,7 +29,7 @@ exports.list = (message) => {
       }
     })
     .catch(collected => {
-        message.channel.send('Timeout');
+        message.channel.send(`Timeout: ${message.author.username} list-all`);
     });
   })
 }
