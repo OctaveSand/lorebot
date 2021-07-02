@@ -4,16 +4,13 @@ const db = require('./crud_fs.js');
 // list all articles
 exports.list = (message) => {
     message.channel.send("** My complete list of articles are as follows **");
-  db.list().forEach( (a,i) => {
+    var articles = db.list();
+    articles.forEach( (a,i) => {
     message.channel.send(`${i} :: ${a.title}`)
   });
-}
 
-
-// sample prompt code: 
-/*
   var filter = m => m.author.id === message.author.id
-  message.channel.send(`Are you sure to delete all data? \`YES\` / \`NO\``).then(() => {
+  message.channel.send(`What number would you like to read? 0 - ${articles.lengt} (\`C\` for cancel)`).then(() => {
     message.channel.awaitMessages(filter, {
         max: 1,
         time: 30000,
@@ -21,12 +18,13 @@ exports.list = (message) => {
     })
     .then(message => {
       message = message.first()
-      if (message.content.toUpperCase() == 'YES' || message.content.toUpperCase() == 'Y') {
-        message.channel.send(`Deleted`)
-      } else if (message.content.toUpperCase() == 'NO' || message.content.toUpperCase() == 'N') {
-        message.channel.send(`Terminated`)
+      if (message.content.toUpperCase() == 'C') {
+        message.channel.send(`Cancelled`)
+      } else if ( ! Number.isNaN(+message.content)) {
+        var i = +message.content
+        message.channel.send(articles[i].body)
       } else {
-        message.channel.send(`Terminated: Invalid Response`)
+        message.channel.send(`Cancelled: Invalid Response`)
       }
     })
     .catch(collected => {
@@ -34,4 +32,3 @@ exports.list = (message) => {
     });
   })
 }
-*/

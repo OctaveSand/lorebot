@@ -17,7 +17,7 @@ console.log(`running. prefix is: ${prefix}`)
 // start
 
 client.on('message', message => {
-  console.log(message.content)
+  //console.log(message.content)
   if (message.content === `${prefix} ping`) {
     message.channel.send('Pong.');
   }else if (message.content.startsWith(`${prefix} list-all`)) {
