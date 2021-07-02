@@ -10,7 +10,7 @@ exports.list = (message) => {
   });
 
   var filter = m => m.author.id === message.author.id
-  message.channel.send(`What number would you like to read? 0 - ${articles.lengt} (\`C\` for cancel)`).then(() => {
+  message.channel.send(`What number would you like to read? 0 - ${articles.length} (\`C\` for cancel)`).then(() => {
     message.channel.awaitMessages(filter, {
         max: 1,
         time: 30000,
